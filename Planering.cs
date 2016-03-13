@@ -19,62 +19,22 @@ namespace Produktionsdata_syningsbänk
         int mmError;
         int count;
         private Planering mainForm;
-        //int start;
-        //int slut;
-        //int fel;
-        //char klass;
-        //int[] yta;
-        //string[] tjöckhet;
-        //string[] planhet;
-        //string[] slutkom;
         int i = 0;
         Avmärkningar[] avmIn = new Avmärkningar[60];
         string strConn;
 
-       // DBConnectioin dBConnectioin = new DBConnectioin();
-
-
-
-        // Avmärkningar avmtmp = new Avmärkningar();
         public Planering()
         {
-            
             InitializeComponent();
             for (int n = 0; n < 60; n++)
                 avmIn[n] = new Avmärkningar();
-
-            //string ConnectionString = System.Configuration.ConfigurationManager.AppSettings["ConnectionString"].ToString();
             showDG();
-           // groupBox6.Controls.OfType(Of RadioButton)
-
-
         }
-
-        /*        private void syningsbänkBindingNavigatorSaveItem_Click(object sender, EventArgs e)
-                {
-                    this.Validate();
-                    this.syningsbänkBindingSource.EndEdit();
-                    this.tableAdapterManager.UpdateAll(this.prodDBDataSet);
-
-                }
-
-                private void syningsbänkBindingNavigatorSaveItem_Click_1(object sender, EventArgs e)
-                {
-                    this.Validate();
-                    this.syningsbänkBindingSource.EndEdit();
-                    this.tableAdapterManager.UpdateAll(this.prodDBDataSet);
-                }
-        */
+        
         private void Form1_Load(object sender, EventArgs e)
         {
-            // TODO: This line of code loads data into the 'prodDBDataSet.Syningsbänk' table. You can move, or remove it, as needed.
             this.SyningsbänkTableAdapter.Fill(this.prodDBDataSet.Syningsbänk);
-            // TODO: This line of code loads data into the 'prodDBDataSet.Syningsbänk' table. You can move, or remove it, as needed.
-           // this.syningsbänkTableAdapter.Fill(this.prodDBDataSet.Syningsbänk);
-            // TODO: This line of code loads data into the 'prodDBDataSet.Syningsbänk' table. You can move, or remove it, as needed.
-            //         this.syningsbänkTableAdapter.Fill(this.prodDBDataSet.Syningsbänk);
             tboxDatum.Text = System.DateTime.Today.ToShortDateString().ToString();
-
             this.reportViewer1.RefreshReport();
             this.reportViewer1.RefreshReport();
         }
@@ -87,24 +47,9 @@ namespace Produktionsdata_syningsbänk
         private void button1_Click(object sender, EventArgs e)
         {
             try { 
-            //Avmärkningar[] avmIn = new Avmärkningar[60];
-
-                //if (comboAvmärkKod.Text == "")
-                //{
-                //    MessageBox.Show("You must enter a value for field 'Kod'!");
-
-                //}
-                //else
-                //{
-
-
                     BandData BD = new BandData();
-
                     failNum++;
-                    //     mmError = Convert.ToInt16(tboxSlut.Text) - Convert.ToInt16(tboxStart.Text);
-
                     avmIn[i] = new Avmärkningar();
-
                     avmIn[i].ytak = CheckedYta();
                     avmIn[i].Planhet = CheckedPlanhet();
                     avmIn[i].tjöckhet = CheckedTjocklek();
@@ -112,77 +57,43 @@ namespace Produktionsdata_syningsbänk
                     avmIn[i].Slut = Convert.ToInt16(tboxSlut.Text);
                     avmIn[i].s = "S";
                     avmIn[i].Fel = comboAvmärkKod.Text;
-
                     avmIn[i].Kommentar = textBox1.Text;
-                    //int r = Int32.TryParse(tboxBredd.Text,BD.bredd);
-
                     BD.bredd = Convert.ToInt32(tboxBredd.Text);
                     if (BD.bredd > 0)
                     {
                         float f = (1 - mmError / (float.Parse(tboxBredd.Text))) * 100;
                         Utbyte.Text = string.Format("{0}", f);
                     }
-
                     else Utbyte.Text = "0";
-
-
                     listBox1.Items.Add(avmIn[i].ToString());
             }
-                
-                catch (Exception exp)
+            catch (Exception exp)
             {
                 MessageBox.Show("Du bör ange ett värde för alla obligatoriska fält. ");
                 }
-
-                i++;
-                tboxStart.Text = tboxSlut.Text;
-                rb1.Checked = false;
-                rb2.Checked = false;
-                rb3.Checked = false;
-                rb4.Checked = false;
-                rb5.Checked = false;
-                rb6.Checked = false;
-                rb7.Checked = false;
-                rb8.Checked = false;
-                rb9.Checked = false;
-                rb10.Checked = false;
-                rb11.Checked = false;
-                rb12.Checked = false;
-                rb13.Checked = false;
-                rb14.Checked = false;
-                rb15.Checked = false;
-                rb16.Checked = false;
-                rb17.Checked = false;
-                rb18.Checked = false;
-                textBox1.Text = "";
-                comboAvmärkKod.Text = "";
-                tboxSlut.Text = "";
-            }
-        
-
-        private void Form1_FormClosing(object sender, FormClosingEventArgs e)
-        {
-
-        }
-
-        private void Form1_FormClosed(object sender, FormClosedEventArgs e)
-        {
-
-        }
-
-        private void bindingNavigatorDeleteItem_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void bindingNavigatorMoveNextItem_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void bindingNavigatorMoveLastItem_Click(object sender, EventArgs e)
-        {
-
+            i++;
+            tboxStart.Text = tboxSlut.Text;
+            rb1.Checked = false;
+            rb2.Checked = false;
+            rb3.Checked = false;
+            rb4.Checked = false;
+            rb5.Checked = false;
+            rb6.Checked = false;
+            rb7.Checked = false;
+            rb8.Checked = false;
+            rb9.Checked = false;
+            rb10.Checked = false;
+            rb11.Checked = false;
+            rb12.Checked = false;
+            rb13.Checked = false;
+            rb14.Checked = false;
+            rb15.Checked = false;
+            rb16.Checked = false;
+            rb17.Checked = false;
+            rb18.Checked = false;
+            textBox1.Text = "";
+            comboAvmärkKod.Text = "";
+            tboxSlut.Text = "";
         }
 
         private void button5_Click(object sender, EventArgs e)
@@ -216,7 +127,6 @@ namespace Produktionsdata_syningsbänk
             rb16.Checked = false;
             rb17.Checked = false;
             rb18.Checked = false;
-
             string commonFolder = Environment.GetFolderPath(Environment.SpecialFolder.CommonApplicationData);
             string myAppFolder = Path.Combine(commonFolder, "MyAppDataFolder");
             AppDomain.CurrentDomain.SetData("DataDirectory", myAppFolder);
@@ -225,29 +135,9 @@ namespace Produktionsdata_syningsbänk
         private void button7_Click(object sender, EventArgs e)
         {
             int count=listBox1.Items.Count;
-
             string strConn;
-            //New way to acheive connection
-
-             
-
-           //cs = connections
-
-            //ORIGINAL CONNECTION
-
-            //SqlConnection cs = new SqlConnection();
-
-            //   strConn  = string.Format("{0}",ConfigurationManager.ConnectionStrings["con"].ConnectionString);
-            //   cs.ConnectionString = strConn;
-            ////////////////////////////////////////////////////////
             SqlConnection cs = new SqlConnection();
-           //FUNKAR// cs.ConnectionString = @"Server=2345pc037\SQLExpress; AttachDbFilename= \\2345fs01\\Users\\U361056\\Munkfors Stålverkets\\Release\\prodDB.mdf;Database=prodDB;Integrated Security=true";
-            //Funkar jätte bra//cs.ConnectionString = "Data Source=2345pc037\\SQLExpress;Initial Catalog=prodDB1;User ID=NTSERVICES;Password=slaeB83;Integrated Security=false;";
             cs.ConnectionString = "Data Source= 2345pc037\\SQLExpress;Initial Catalog= prodDB;User ID=NTSERVICES;Password=slaeB83;Integrated Security=false";
-            //    //Trusted_Connection=Yes"; //(LocalDB)\PRFInstance\prodDB.mdf;" +
-            //    //"Integrated Security=True";//(LocalDB)\PRFInstance;Integrated Security=True";
-
-            //@"Data Source=2345pc037\SQLEXPRESS;Initial Catalog=prodDB;Integrated Security=true";
             try
             {
                 for (int j = 0; j < avmIn.Count(); j++)
@@ -286,7 +176,6 @@ namespace Produktionsdata_syningsbänk
                     cmd.Parameters.AddWithValue("@Bredd", tboxBredd.Text);
                     cmd.Parameters.AddWithValue("@RingVikt", tboxRingVikt.Text);
                     cmd.Parameters.AddWithValue("@SlutKommentar", textBox2.Text);
-
                     cmd.Parameters.AddWithValue("@Start", avmIn[j].Start);
                     cmd.Parameters.AddWithValue("@Slut", avmIn[j].Slut);
                     cmd.Parameters.AddWithValue("@Fel", avmIn[j].Fel);
@@ -295,77 +184,55 @@ namespace Produktionsdata_syningsbänk
                     cmd.Parameters.AddWithValue("@Tjocklek", avmIn[j].tjöckhet);
                     cmd.Parameters.AddWithValue("@YtaKod", avmIn[j].ytak);
                     cmd.Parameters.AddWithValue("@AvmärkKommentar", avmIn[j].Kommentar);
-
-                    //  cmd.Parameters.AddWithValue("@Härdat", comboHärdat.SelectedItem);
-                    //  cmd.Parameters.AddWithValue("@Slutvalsat", comboSlutvalsat.SelectedItem);
-                    // SqlCommand com = new SqlCommand("insert into prodDB.dbo.Syningsbänk ())
-
-
                     try
-                    {
-                        int res = cmd.ExecuteNonQuery();
-                        //  SqlCommand cm= new SqlCommand("Select count(*) from prodDB.dbo.Syningsbänk",cs);
-                        if (res > 0)
                         {
-                            // MessageBox.Show("Record(s) added to the database.");
-                            //Console.WriteLine("Database contains total record: " + cm);
-                            rb1.Checked = false;
-                            rb2.Checked = false;
-                            rb3.Checked = false;
-                            rb4.Checked = false;
-                            rb5.Checked = false;
-                            rb6.Checked = false;
-                            rb7.Checked = false;
-                            rb8.Checked = false;
-                            rb9.Checked = false;
-                            rb10.Checked = false;
-                            rb11.Checked = false;
-                            rb12.Checked = false;
-                            rb13.Checked = false;
-                            rb14.Checked = false;
-                            rb15.Checked = false;
-                            rb16.Checked = false;
-                            rb17.Checked = false;
-                            rb18.Checked = false;
-                            listBox1.Items.Clear();
-                            tboxStart.Text = "0";
-                            tboxBredd.Text = "";
-                            tboxCharge.Text = "";
-                            tboxMaterialnr.Text = "";
-                            tboxMaxTjocklek.Text = "";
-                            tboxMinTjocklek.Text = "";
-                            tboxOrdernr.Text = "";
-                            tboxRa.Text = "";
-                            tboxRingnr.Text = "";
-                            tboxRingVikt.Text = "";
-                            tboxRz.Text = "";
-                            tboxSlut.Text = "";
-                            tboxYta.Text = "";
-                            Utbyte.Text = "";
-                            textBox2.Text = "";
+                            int res = cmd.ExecuteNonQuery();
+                            if (res > 0)
+                            {
+                                rb1.Checked = false;
+                                rb2.Checked = false;
+                                rb3.Checked = false;
+                                rb4.Checked = false;
+                                rb5.Checked = false;
+                                rb6.Checked = false;
+                                rb7.Checked = false;
+                                rb8.Checked = false;
+                                rb9.Checked = false;
+                                rb10.Checked = false;
+                                rb11.Checked = false;
+                                rb12.Checked = false;
+                                rb13.Checked = false;
+                                rb14.Checked = false;
+                                rb15.Checked = false;
+                                rb16.Checked = false;
+                                rb17.Checked = false;
+                                rb18.Checked = false;
+                                listBox1.Items.Clear();
+                                tboxStart.Text = "0";
+                                tboxBredd.Text = "";
+                                tboxCharge.Text = "";
+                                tboxMaterialnr.Text = "";
+                                tboxMaxTjocklek.Text = "";
+                                tboxMinTjocklek.Text = "";
+                                tboxOrdernr.Text = "";
+                                tboxRa.Text = "";
+                                tboxRingnr.Text = "";
+                                tboxRingVikt.Text = "";
+                                tboxRz.Text = "";
+                                tboxSlut.Text = "";
+                                tboxYta.Text = "";
+                                Utbyte.Text = "";
+                                textBox2.Text = "";
+                            }
                         }
-                    }
-
-
                     catch (SqlException ex)
                     {
-
-                        //MessageBox.Show("You must enter a value for all requirted fields!");
-                       Console.WriteLine("Du bör ange ett värde för alla obligatoriska fält. ");
-                        //Console.WriteLine(ex.Message);
-
-                        // mainForm = new Planering();
-                        //mainForm.Show();
+                        Console.WriteLine("Du bör ange ett värde för alla obligatoriska fält. ");
                     }
-
                     catch (NullReferenceException NREXC)
                     {
                         MessageBox.Show(NREXC.Message);
                     }
-
-
-                    //Application.Run(new Planering());
-
                     cs.Close();
                 }
             }
@@ -382,18 +249,10 @@ namespace Produktionsdata_syningsbänk
                 avmIn[n] = new Avmärkningar();
         }
 
-        private void tboxDatum_TextChanged(object sender, EventArgs e)
-        {
-
-        }
-
-
-
         private String CheckedYta()
         {
             if (rb1.Checked)
             {
-                //rb1.Checked = false;
                 rb2.Checked = false;
                 rb3.Checked = false;
                 rb4.Checked = false;
@@ -408,7 +267,6 @@ namespace Produktionsdata_syningsbänk
             if (rb2.Checked)
             {
                 rb1.Checked = false;
-                //rb2.Checked = false;
                 rb3.Checked = false;
                 rb4.Checked = false;
                 rb5.Checked = false;
@@ -424,7 +282,6 @@ namespace Produktionsdata_syningsbänk
                 rb1.Checked = false;
                 rb2.Checked = false;
                 rb3.Checked = false;
-                //rb4.Checked = false;
                 rb5.Checked = false;
                 rb6.Checked = false;
                 rb7.Checked = false;
@@ -437,7 +294,6 @@ namespace Produktionsdata_syningsbänk
             {
                 rb1.Checked = false;
                 rb2.Checked = false;
-                //rb3.Checked = false;
                 rb4.Checked = false;
                 rb5.Checked = false;
                 rb6.Checked = false;
@@ -454,7 +310,6 @@ namespace Produktionsdata_syningsbänk
                 rb3.Checked = false;
                 rb4.Checked = false;
                 rb5.Checked = false;
-                //rb6.Checked = false;
                 rb7.Checked = false;
                 rb8.Checked = false;
                 rb9.Checked = false;
@@ -483,7 +338,6 @@ namespace Produktionsdata_syningsbänk
                 rb4.Checked = false;
                 rb5.Checked = false;
                 rb6.Checked = false;
-                //rb7.Checked = false;
                 rb8.Checked = false;
                 rb9.Checked = false;
                 rb10.Checked = false;
@@ -498,7 +352,6 @@ namespace Produktionsdata_syningsbänk
                 rb5.Checked = false;
                 rb6.Checked = false;
                 rb7.Checked = false;
-                //rb8.Checked = false;
                 rb9.Checked = false;
                 rb10.Checked = false;
                 return rb8.Text;
@@ -513,7 +366,6 @@ namespace Produktionsdata_syningsbänk
                 rb6.Checked = false;
                 rb7.Checked = false;
                 rb8.Checked = false;
-                //rb9.Checked = false;
                 rb10.Checked = false;
                 return rb9.Text;
             }
@@ -528,21 +380,17 @@ namespace Produktionsdata_syningsbänk
                 rb7.Checked = false;
                 rb8.Checked = false;
                 rb9.Checked = false;
-                //rb10.Checked = false;
                 return rb10.Text;
             }
-
             else
                 return " ";
         }
-
 
         private String CheckedTjocklek()
         {
             if (rb12.Checked)
             {
                 rb11.Checked = false;
-               // rb12.Checked = false;
                 rb13.Checked = false;
                 rb14.Checked = false;
                 rb15.Checked = false;
@@ -550,7 +398,6 @@ namespace Produktionsdata_syningsbänk
             }
             if (rb11.Checked)
             {
-                //rb11.Checked = false;
                 rb12.Checked = false;
                 rb13.Checked = false;
                 rb14.Checked = false;
@@ -562,7 +409,6 @@ namespace Produktionsdata_syningsbänk
                 rb11.Checked = false;
                 rb12.Checked = false;
                 rb13.Checked = false;
-                //rb14.Checked = false;
                 rb15.Checked = false;
                 return rb14.Text;
             }
@@ -570,7 +416,6 @@ namespace Produktionsdata_syningsbänk
             {
                 rb11.Checked = false;
                 rb12.Checked = false;
-              //  rb13.Checked = false;
                 rb14.Checked = false;
                 rb15.Checked = false;
                 return rb13.Text;
@@ -581,7 +426,6 @@ namespace Produktionsdata_syningsbänk
                 rb12.Checked = false;
                 rb13.Checked = false;
                 rb14.Checked = false;
-                //rb15.Checked = false;
                 return rb15.Text;
             }
             else
@@ -603,10 +447,6 @@ namespace Produktionsdata_syningsbänk
             }
             else
                 return " ";
-        }
-        private void rb4_CheckedChanged(object sender, EventArgs e)
-        {
-
         }
 
         private void ordernrTextBox_Validated(object sender, EventArgs e)
@@ -664,6 +504,7 @@ namespace Produktionsdata_syningsbänk
                 ((TextBox)sender).Text = "0";
             }
         }
+        
         private void comboLeverantör_Validated_1(object sender, EventArgs e)
         {
             if (((TextBox)sender).Text == "")
@@ -671,14 +512,7 @@ namespace Produktionsdata_syningsbänk
                 ((TextBox)sender).Text = "0";
             }
         }
-        private void comboStålsort_Validated(object sender, EventArgs e)
-        {
 
-        }
-        private void comboAg_Validated(object sender, EventArgs e)
-        {
-
-        }
         private void comboKlassningKod_Validated_1(object sender, EventArgs e)
         {
             if (((TextBox)sender).Text == "")
@@ -686,6 +520,7 @@ namespace Produktionsdata_syningsbänk
                 ((TextBox)sender).Text = "0";
             }
         }
+        
         private void comboSlutvalsat_Validated(object sender, EventArgs e)
         {
             if (((TextBox)sender).Text == "")
@@ -693,6 +528,7 @@ namespace Produktionsdata_syningsbänk
                 ((TextBox)sender).Text = "0";
             }
         }
+        
         private void comboHärdat_Validated(object sender, EventArgs e)
         {
             if (((TextBox)sender).Text == "")
@@ -700,6 +536,7 @@ namespace Produktionsdata_syningsbänk
                 ((TextBox)sender).Text = "0";
             }
         }
+        
         private void comboAvmärkKod_Validated(object sender, EventArgs e)
         {
             if (((TextBox)sender).Text == "")
@@ -707,6 +544,7 @@ namespace Produktionsdata_syningsbänk
                 ((TextBox)sender).Text = "0";
             }
         }
+        
         private void comboSynare_Validated_1(object sender, EventArgs e)
         {
             if (((TextBox)sender).Text == "")
@@ -727,42 +565,33 @@ namespace Produktionsdata_syningsbänk
 
         private void button2_Click(object sender, EventArgs e)
         {
-           try{ // Avmärkningar[] avmIn = new Avmärkningar[60];
-            BandData BD = new BandData();
-            failNum++;
-
-            mmError = Convert.ToInt16(tboxSlut.Text) - Convert.ToInt16(tboxStart.Text);
-
-
-            avmIn[i].ytak = CheckedYta();
-            avmIn[i].Planhet = CheckedPlanhet();
-            avmIn[i].tjöckhet = CheckedTjocklek();
-            avmIn[i].Start = Convert.ToInt16(tboxStart.Text);
-            avmIn[i].Slut = Convert.ToInt16(tboxSlut.Text);
-            avmIn[i].s = "N";
-            avmIn[i].Kommentar = textBox1.Text;
-            avmIn[i].Fel = comboAvmärkKod.Text;
-            //int r = Int32.TryParse(tboxBredd.Text,BD.bredd);
-
-            BD.bredd = Convert.ToInt32(tboxBredd.Text);
-            if (BD.bredd > 0)
-            {
-                float f = (1 - mmError / (float.Parse(tboxBredd.Text))) * 100;
-                Utbyte.Text = string.Format("{0}", f);
+           try{
+               BandData BD = new BandData();
+               failNum++;
+               mmError = Convert.ToInt16(tboxSlut.Text) - Convert.ToInt16(tboxStart.Text);
+               avmIn[i].ytak = CheckedYta();
+               avmIn[i].Planhet = CheckedPlanhet();
+               avmIn[i].tjöckhet = CheckedTjocklek();
+               avmIn[i].Start = Convert.ToInt16(tboxStart.Text);
+               avmIn[i].Slut = Convert.ToInt16(tboxSlut.Text);
+               avmIn[i].s = "N";
+               avmIn[i].Kommentar = textBox1.Text;
+               avmIn[i].Fel = comboAvmärkKod.Text;
+               BD.bredd = Convert.ToInt32(tboxBredd.Text);
+               if (BD.bredd > 0)
+               {
+                   float f = (1 - mmError / (float.Parse(tboxBredd.Text))) * 100;
+                   Utbyte.Text = string.Format("{0}", f);
+               }
+               else Utbyte.Text = "0";
+               listBox1.Items.Add(avmIn[i].ToString());
             }
-            else Utbyte.Text = "0";
-
-
-            listBox1.Items.Add(avmIn[i].ToString());
-           }
-              catch (Exception exp)
+            catch (Exception exp)
             {
                 MessageBox.Show("Du bör ange ett värde för alla obligatoriska fält. ");
                 Console.WriteLine(exp);
-                }
-            
+            }
             tboxStart.Text = tboxSlut.Text;
-
             tboxStart.Text = tboxSlut.Text;
             rb1.Checked = false;
             rb2.Checked = false;
@@ -791,12 +620,10 @@ namespace Produktionsdata_syningsbänk
         private void button3_Click(object sender, EventArgs e)
         {
             try
-            {//  Avmärkningar[] avmIn = new Avmärkningar[60];
+            {
                 BandData BD = new BandData();
                 failNum++;
                 mmError = Convert.ToInt16(tboxSlut.Text) - Convert.ToInt16(tboxStart.Text);
-
-
                 avmIn[i].ytak = CheckedYta();
                 avmIn[i].Planhet = CheckedPlanhet();
                 avmIn[i].tjöckhet = CheckedTjocklek();
@@ -805,8 +632,6 @@ namespace Produktionsdata_syningsbänk
                 avmIn[i].s = "B";
                 avmIn[i].Kommentar = textBox1.Text;
                 avmIn[i].Fel = comboAvmärkKod.Text;
-                //int r = Int32.TryParse(tboxBredd.Text,BD.bredd);
-
                 BD.bredd = Convert.ToInt32(tboxBredd.Text);
                 if (BD.bredd > 0)
                 {
@@ -814,8 +639,6 @@ namespace Produktionsdata_syningsbänk
                     Utbyte.Text = string.Format("{0}", f);
                 }
                 else Utbyte.Text = "0";
-
-
                 listBox1.Items.Add(avmIn[i].ToString());
             }
             catch (Exception exp)
@@ -823,7 +646,6 @@ namespace Produktionsdata_syningsbänk
                 MessageBox.Show("Du bör ange ett värde för alla obligatoriska fält. ");
             }
             tboxStart.Text = tboxSlut.Text;
-
             tboxStart.Text = tboxSlut.Text;
             rb1.Checked = false;
             rb2.Checked = false;
@@ -852,12 +674,10 @@ namespace Produktionsdata_syningsbänk
         private void button4_Click(object sender, EventArgs e)
         {
             try
-            {// Avmärkningar avmIn = new Avmärkningar();
+            {
                 BandData BD = new BandData();
                 failNum++;
                 mmError = Convert.ToInt16(tboxSlut.Text) - Convert.ToInt16(tboxStart.Text);
-
-
                 avmIn[i].ytak = CheckedYta();
                 avmIn[i].Planhet = CheckedPlanhet();
                 avmIn[i].tjöckhet = CheckedTjocklek();
@@ -866,8 +686,6 @@ namespace Produktionsdata_syningsbänk
                 avmIn[i].s = "U";
                 avmIn[i].Kommentar = textBox1.Text;
                 avmIn[i].Fel = comboAvmärkKod.Text;
-                //int r = Int32.TryParse(tboxBredd.Text,BD.bredd);
-
                 BD.bredd = Convert.ToInt32(tboxBredd.Text);
                 if (BD.bredd > 0)
                 {
@@ -875,8 +693,6 @@ namespace Produktionsdata_syningsbänk
                     Utbyte.Text = string.Format("{0}", f);
                 }
                 else Utbyte.Text = "0";
-
-
                 listBox1.Items.Add(avmIn[i].ToString());
             }
             catch (Exception exp)
@@ -884,7 +700,6 @@ namespace Produktionsdata_syningsbänk
                 MessageBox.Show("Du bör ange ett värde för alla obligatoriska fält. ");
             }
             tboxStart.Text = tboxSlut.Text;
-
             tboxStart.Text = tboxSlut.Text;
             rb1.Checked = false;
             rb2.Checked = false;
@@ -913,17 +728,11 @@ namespace Produktionsdata_syningsbänk
         private void button8_Click(object sender, EventArgs e)
         {
             string s;
-
             s = textBox3.Text;
             var sök = new List<string>();
-            //for (int i = 1; i == 100; i++)
-            //    sök[i] = " ";
-             SqlConnection connect = new SqlConnection();
-             //FUNKAR JÄTTE BRA: connect.ConnectionString = "Data Source=2345pc037\\SQLExpress;Initial Catalog=prodDB1;User ID=NTSERVICES;Password=slaeB83;Integrated Security=false;";
-             connect.ConnectionString = "Data Source= 2345pc037\\SQLExpress;Initial Catalog= prodDB;User ID=NTSERVICES;Password=slaeB83;Integrated Security=false";
+            SqlConnection connect = new SqlConnection();
+            connect.ConnectionString = "Data Source= 2345pc037\\SQLExpress;Initial Catalog= prodDB;User ID=NTSERVICES;Password=slaeB83;Integrated Security=false";
             connect.Open();
-            //FUNKAR//connect.ConnectionString = @"Data Source=2345pc037\SQLEXPRESS;Initial Catalog=prodDB;Integrated Security=true";
-           // string f = string.Format("{0}",'"+string.Format("{0}",textBox3.Text)+"' );
             SqlCommand cmd = new SqlCommand(
                                                             " Select * from prodDB.dbo.Syningsbänk where Ordernr like '"+(textBox3.Text) +"'  or"+
                                                                                       " Datum like '" + string.Format("{0}", textBox3.Text) + "'  or" +
@@ -951,72 +760,25 @@ namespace Produktionsdata_syningsbänk
                                                                                                                 " Leverantör like '" + textBox3.Text+"'  or" +
                                                                                                                     " Charge like '%''"+textBox3.Text+"''%' " , connect);
 
-           // cmd.Parameters.AddWithValue("'"+string.Format("{0}",textBox3.Text)+"' ", s );
-
             SqlDataAdapter dAdapter = new SqlDataAdapter(cmd);
             DataSet dSet = new DataSet();
             dAdapter.Fill(dSet);
             dataGridView1.DataSource = dSet.Tables[0];
-            //if (sök == null)
-            //    MessageBox.Show("Couldn't find any mached text! ");
-            //listBox1.Items.Add(sök);
-
             connect.Close();
-            //string.Format("{0}",textBox3.Text)
         }
         private void showDG()
         {
-            //**ORIGINAL
-            //SqlConnection cs = new SqlConnection();
-
-            //strConn = string.Format("{0}", ConfigurationManager.ConnectionStrings["con"].ConnectionString);
-            //SqlConnection cs = new SqlConnection();
-            ////cs.ConnectionString = @"Server=2345pc037\SQLExpress; AttachDbFilename= \\2345fs01\\Users\\U361056\\Munkfors Stålverkets\\Release\\prodDB.mdf;Database=prodDB;Integrated Security=true";
-            ////cs.ConnectionString = @"Server=2345pc037\SQLExpress; Integrated Security=true";
-
-            //    cs.ConnectionString = "Data Source=2345pc037\\SQLExpress;Initial Catalog=prodDB1;User ID=NTSERVICES;Password=slaeB83;Integrated Security=false;";
-
-            //    cs.Open();
-
-
-
-
-            //    SqlCommand cmd = new SqlCommand();
-
-            //    cmd.Connection = cs;
-            //    cmd.CommandType = CommandType.Text;
-            //    cmd.CommandText = "SELECT * FROM prodDB1.dbo.Syningsbänk";
-            //    SqlDataAdapter dbAdapter = new SqlDataAdapter(cmd);
-
-            //    DataTable dtRecords = new DataTable();
-            //    dbAdapter.Fill(dtRecords);
-            //    dataGridView1.DataSource = dtRecords; //dataGrid
-
-            //**ORIGINAL
-            //SqlConnection cs = new SqlConnection();
-
-            //strConn = string.Format("{0}", ConfigurationManager.ConnectionStrings["con"].ConnectionString);
             SqlConnection cs2 = new SqlConnection();
-            //cs.ConnectionString = @"Server=2345pc037\SQLExpress; AttachDbFilename= \\2345fs01\\Users\\U361056\\Munkfors Stålverkets\\Release\\prodDB.mdf;Database=prodDB;Integrated Security=true";
-            //cs.ConnectionString = @"Server=2345pc037\SQLExpress; Integrated Security=true";
-           //FUNKAR JÄTTE BRA: cs2.ConnectionString = "Data Source=2345pc037\\SQLExpress;Initial Catalog=prodDB1;User ID=NTSERVICES;Password=slaeB83;Integrated Security=false";
             cs2.ConnectionString = "Data Source= 2345pc037\\SQLExpress;Initial Catalog= prodDB;User ID=NTSERVICES;Password=slaeB83;Integrated Security=false";
             cs2.Open();
-
             SqlCommand cmd = new SqlCommand();
-
             cmd.Connection = cs2;
             cmd.CommandType = CommandType.Text;
             cmd.CommandText = "SELECT * FROM prodDB.dbo.Syningsbänk";
-
             SqlDataAdapter dbAdapter = new SqlDataAdapter(cmd);
-
             DataTable dtRecords = new DataTable();
             dbAdapter.Fill(dtRecords);
-            dataGridView1.DataSource = dtRecords; //dataGrid
-
-
-
+            dataGridView1.DataSource = dtRecords; 
         }
 
         private void button9_Click(object sender, EventArgs e)
@@ -1099,14 +861,11 @@ namespace Produktionsdata_syningsbänk
         }
         private void printDocument1_PrintPage(System.Object sender, System.Drawing.Printing.PrintPageEventArgs e)
         {
-            
-        Bitmap dataGridViewImage = new Bitmap(this.dataGridView1.Width, this.dataGridView1.Height);
+            Bitmap dataGridViewImage = new Bitmap(this.dataGridView1.Width, this.dataGridView1.Height);
             dataGridView1.DrawToBitmap(dataGridViewImage, new Rectangle(0, 0,this.dataGridView1.Width,this.dataGridView1.Height));
             e.Graphics.DrawImage(dataGridViewImage, 0, 0);
         }
         
-         
-
         private void tboxSlut_Leave(object sender, EventArgs e)
         {
             if (Convert.ToInt32(tboxStart.Text) >= Convert.ToInt32(tboxSlut.Text))
@@ -1155,28 +914,5 @@ namespace Produktionsdata_syningsbänk
                 tboxBredd.Focus();
             }
         }
-
-        private void reportViewer1_Load(object sender, EventArgs e)
-        {
-
-        }
-
-        private void button7_Click_1(object sender, EventArgs e)
-        {
-            //DataTable dtR= new DataTable()
-            
-            ////cmd.Connection = ;
-            //cmd.CommandType = CommandType.Text;
-            //cmd.CommandText = "SELECT * FROM prodDB.dbo.Syningsbänk";
-
-            //SqlDataAdapter dbAdapter = new SqlDataAdapter(cmd);
-
-            //DataTable dtRecords = new DataTable();
-            //dbAdapter.Fill(dtRecords);
-        }
-
-
-
-
     }
 }

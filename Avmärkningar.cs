@@ -40,17 +40,7 @@ namespace Produktionsdata_syningsbänk
                 this.slut = value;
             }
         }
-        //public int Kod
-        //{
-        //    get
-        //    {
-        //        return this.kod;
-        //    }
-        //    set
-        //    {
-        //        this.kod = value;
-        //    }
-        //}
+        
         public string s
         {
             get
@@ -118,7 +108,6 @@ namespace Produktionsdata_syningsbänk
                 this.kommentar = value;
             }
         }
-
 
         public override string ToString()
         {
